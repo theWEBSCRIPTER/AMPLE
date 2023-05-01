@@ -1,0 +1,335 @@
+<style>
+    .menubar {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        z-index: 99;
+        background: var(--darker);
+    }
+
+
+    .menubar .menu_c ul {
+        height: 30px;
+        display: flex;
+    }
+
+    .menubar .menu_c ul li {
+        height: 30px;
+        line-height: 30px;
+        color: #ffffffd5;
+        user-select: none;
+        font-size: 13px;
+        display: flex;
+    }
+
+    .menubar .menu_c ul li[disabled] {
+        pointer-events: none;
+    }
+
+    .menubar .menu_c ul li span.menu_label {
+        /*position: absolute;*/
+        width: 100%;
+        height: 100%;
+        padding: 0px 5px;
+    }
+
+    .menubar .menu_c ul li:hover,
+    .menubar .menu_c ul.active li.active {
+        color: #fff;
+        background: var(--light);
+        z-index: 5;
+    }
+
+    .menubar .menu_c ul li ul.ch {
+        display: none;
+        position: absolute;
+        top: 30px;
+        flex-direction: column;
+        height: auto;
+        width: 290px;
+        z-index: 9;
+        padding: 8px 0;
+        background: var(--darker);
+        box-shadow: 0px 2px 4px .1px #000;
+    }
+
+    .menubar .menu_c ul li ul.ch li {
+        height: 27px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 4px 20px;
+        color: #ffffffd5;
+        line-height: normal;
+        /* height: auto; */
+        cursor: pointer;
+    }
+
+    .menubar .menu_c ul li ul.ch [disabled] {
+        pointer-events: none;
+        color: #fff8;
+        display: none;
+    }
+
+    .menubar .menu_c ul li ul.ch li label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 27px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .menubar .menu_c ul li ul.ch li label input[type="checkbox"] {
+        /* position: absolute; */
+        -webkit-appearance: none;
+        width: 20px;
+        height: 16px;
+        /* left: -17px; */
+    }
+
+    .menubar .menu_c ul li ul.ch li label input[type="checkbox"]:checked {
+        background: url(../img/check.svg) bottom/ 16px;
+    }
+
+    .menubar .menu_c ul li ul.ch hr {
+        border: 0px;
+        border-bottom: .5px solid #868686;
+        margin: 5px 5px;
+    }
+
+    .menubar .menu_c ul.active li:hover ul.ch,
+    .menubar .menu_c ul.active li.active ul.ch {
+        display: flex;
+    }
+
+    .menubar .menu_c ul li ul.ch li.par::after {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-right: 1px solid #fff;
+        border-top: 1px solid #fff;
+        position: absolute;
+        right: 9px;
+        top: 10px;
+        transform: rotate(45deg);
+    }
+
+    .menu li.par.r::after {
+        transform: rotate(135deg)
+    }
+
+    .menubar .menu_c ul li ul.ch li ul.ch.innerCh {
+        top: 0;
+        left: 100%;
+        transform: translate(-6px, -8px);
+        display: none;
+    }
+
+    .menubar .menu_c ul li ul.ch li:hover ul.ch.innerCh {
+        display: flex;
+    }
+
+    .menubar .heading {
+        padding: 0 5px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ddd;
+        display: flex;
+        line-height: 25px;
+        background: #1c1d1b;
+    }
+
+    #title {
+        max-width: calc(30ch - 2px);
+        height: 25px;
+        word-break: break-all;
+        overflow: hidden;
+        text-align: end;
+    }
+
+    #ample::before {
+        content: ' - ';
+    }
+
+    #ample.not_saved::after {
+        content: '';
+        position: absolute;
+        top: calc(50% - 2px);
+        right: -10px;
+        width: 6px;
+        height: 6px;
+        background: rgb(255, 255, 255);
+        border-radius: 50%;
+    }
+
+    #title.long~#ample::before {
+        content: '... - ';
+    }
+</style>
+<div class="menu_c">
+  
+<ul id="menu">
+    <li class="menu_item"><span class="menu_label">Project</span>
+        <ul class="ch">
+            <li click="newProject()">New <span class="shtct">Ctrl+N</span></li>
+            <li click="openProject()">Open <span class="shtct">Ctrl+O</span></li>
+            <li click="save()">Save <span class="shtct">Ctrl+S</span></li>
+            <li click="saveProjectAs()" disabled>
+                Save As <span class="shtct">Ctrl+Shift+S</span>
+            </li>
+            <li click="exportAs()">
+                Export As <span class="shtct">Ctrl+E</span>
+            </li>
+            <li click="restore()" id="restore">Restore Last Saved Project</li>
+            <hr disabled>
+            <li disabled>Open</li>
+            <li class="par" disabled>Open Recent
+                <ul class="ch innerCh">
+                    <li>Single</li>
+                    <li>Single</li>
+                    <li>Single</li>
+                    <li>Single</li>
+                </ul>
+            </li>
+            <hr>
+            <li>
+                <label>
+                    <input type="checkbox" id="auto_run_btn" checked> Auto Run
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox" id="auto_save_btn"> Auto Save
+                </label>
+            </li>
+            <hr>
+            <li click="window.close()">Close <span class="shtct">Ctrl+W</span></li>
+        </ul>
+    </li>
+    <li class="menu_item editor_menu" style="display: flex;"><span class="menu_label">Edit</span>
+        <ul class="ch">
+            <li click="cmd('undo')">Undo <span class="shtct">Ctrl+Z</span></li>
+            <li click="cmd('redo')">Redo <span class="shtct">Ctrl+Y</span></li>
+            <hr>
+            <li click="cmd('undo')">Cut <span class="shtct">Ctrl+X</span></li>
+            <li click="cmd('undo')">Copy <span class="shtct">Ctrl+C</span></li>
+            <li click="cmd('undo')">Paste <span class="shtct">Ctrl+V</span></li>
+            <hr>
+            <li click="cmd('undo')">Find <span class="shtct">Ctrl+F</span></li>
+            <li click="cmd('undo')">Replace <span class="shtct">Ctrl+H</span></li>
+            <hr>
+            <li class="par">Change Case
+                <ul class="ch innerCh">
+                    <li click="cmd('downcaseAtCursor')">Lower Case <span class="shtct">Ctrl+K
+                            Ctrl+U</span></li>
+                    <li click="cmd('upcaseAtCursor')">Upper Case <span class="shtct">Ctrl+K Ctrl+L</span>
+                    </li>
+                </ul>
+            </li>
+            <li click="cmd('toggleComment')">Toggle Line Comment <span class="shtct">Ctrl+/</span>
+            </li>
+            <li click="">Add Block
+                Comment <span class="shtct">Ctrl+Shift+/</span></li>
+        </ul>
+    </li>
+    <li class="menu_item editor_menu" style="display: flex;"><span class="menu_label">Document</span>
+        <ul class="ch">
+            <li click="format()">Format Document<span class="shtct">Ctrl+Shift+F</span></li>
+            <li click="" disabled>Analyze Document<span class="shtct"></span></li>
+            <hr>
+            <li click="full()">Full Screen <span class="shtct">F11, Ctrl+H</span></li>
+            <li click="cmd('foldAll')">Fold All Blocks</li>
+            <li click="cmd('unfoldAll')">Unfold All Blocks</li>
+            <li click="revert()">Revert</li>
+        </ul>
+    </li>
+    <li class="menu_item editor_menu" style="display: flex;"><span class="menu_label">Selection</span>
+        <ul class="ch">
+            <li click="cmd('selectAll')">Select All <span class="shtct">Ctrl+A</span></li>
+            <li>Expand Selection <span class="shtct">Ctrl+</span></li>
+            <li click="cmd('undoSelection')">Undo Selection <span class="shtct">Ctrl+Alt+Z</span></li>
+            <hr>
+            <li click="copyLineUp()" class="clu">Copy Line Up <span class="shtct">Alt+Shift+Up</span></li>
+            <li click="copyLineDown()">Copy Line Down <span class="shtct">Alt+Shift+Down</span></li>
+            <li click="cmd('swapLineUp')">Move Line Up <span class="shtct">Alt+Up</span></li>
+            <li click="cmd('swapLineDown')">Move Line Down <span class="shtct">Alt+Down</span></li>
+            <hr>
+            <li click="cmd('splitSelectionByLine')">Split into Lines<span class="shtct">Ctrl+Shift+L</span></li>
+            <li click="cmd('addCursorToNextLine')">Add Cursor to Next Line<span class="shtct">Ctrl+Alt+Down</span></li>
+            <li click="cmd('addCursorToPrevLine')">Add Cursor to Prev Line<span class="shtct">Ctrl+Alt+Up</span></li>
+            <hr>
+            <li click="cmd('deleteLine')">Delete Line <span class="shtct">Ctrl+Shift+K</span></li>
+            <!-- <li click="cmd('newlineAndIndent');cmd('newlineAndIndent');cmd('goLineUp');cmd('indentAuto');">Insert Line with Indent<span class="shtct">Ctrl+</span></li> -->
+        </ul>
+    </li>
+    <li class="menu_item editor_menu" style="display: flex;"><span class="menu_label">Goto</span>
+        <ul class="ch">
+            <li click="cmd('goDocStart')">Document Start<span class="shtct">Ctrl+Home</span></li>
+            <li click="cmd('goDocEnd')">Document End<span class="shtct"></span>Ctrl+End</li>
+            <hr>
+            <li click="cmd('goSubwordLeft')">Go Subword Left<span class="shtct">Alt+Left</span></li>
+            <li click="cmd('goSubwordRight')">Go Subword Right<span class="shtct">Alt+Right</span></li>
+            <hr>
+            <li click="cmd('goToBracket')" disabled>Go to Line/Column<span class="shtct"></span></li>
+            <li click="cmd('emmetGoToTagPair')">Go to Matching Tag<span class="shtct"></span></li>
+            <li click="cmd('goToBracket')">Go to Macthing Bracket<span class="shtct"></span></li>
+        </ul>
+    </li>
+    <li class="menu_item editor_menu" style="display: flex;"><span class="menu_label">Emmet</span>
+        <ul class="ch">
+            <li click="cmd('emmetExpandAbbreviationAll')">Expand Abbreviation<span class="shtct">Tab</span></li>
+            <li click="cmd('emmetCaptureAbbreviation')">Show Abbreviation<span class="shtct"></span></li>
+            <li click="cmd('emmetResetAbbreviation')">Reset Abbreviation<span class="shtct"></span></li>
+            <hr>
+            <li click="cmd('emmetGoToTagPair')">Go to Pair Tag<span class="shtct">Ctrl+P</span></li>
+            <li click="cmd('emmetRemoveTag')">Remove Tag<span class="shtct"></span></li>
+            <li click="cmd('emmetWrapWithAbbreviation')">Wrap with Abbreviation<span class="shtct">Ctrl+Shift+A</span>
+            </li>
+            <hr>
+            <li click="cmd('emmetGoToNextEditPoint')">Next Edit Point<span class="shtct"></span></li>
+            <li click="cmd('emmetGoToPreviousEditPoint')">Prev Edit Point<span class="shtct"></span></li>
+            <hr>
+            <li class="par">Increase/Decrease Number
+                <ul class="ch innerCh">
+                    <li click="cmd('emmetIncrementNumber01')">Increse Number by 0.1<span class="shtct"></span></li>
+                    <li click="cmd('emmetIncrementNumber1')">Increse Number by 1<span class="shtct"></span></li>
+                    <li click="cmd('emmetIncrementNumber10')">Increse Number by 10<span class="shtct"></span></li>
+                    <li click="cmd('emmetDecrementNumber01')">Decrese Number by 0.1<span class="shtct"></span></li>
+                    <li click="cmd('emmetDecrementNumber1')">Decrese Number by 1<span class="shtct"></span></li>
+                    <li click="cmd('emmetDecrementNumber10')">Decrese Number by 10<span class="shtct"></span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class="menu_item result_menu" style="display: none;"><span class="menu_label">Page</span>
+        <ul class="ch">
+            <li click="run()">Reload<span class="shtct">Ctrl+R</span></li>
+            <li disabled click="$('iframe').contentWindow.history.back()">Go
+                Back<span class="shtct"></span></li>
+            <li disabled click="$('iframe').contentWindow.history.forward()">Go
+                Forward<span class="shtct"></span></li>
+        </ul>
+    </li>
+    <li class="menu_item result_menu" style="display: none;"><span class="menu_label">View</span>
+        <ul class="ch">
+            <li click="fullResult()">Full Screen<span class="shtct">Ctrl+H</span></li>
+            <li disabled class="openinnewtab" click="">Open in new Tab<span class="shtct"></span></li>
+            <hr>
+            <li disabled click="">Developper Mode<span class="shtct"></span></li>
+        </ul>
+    </li>
+    <li class="menu_item" id="hidden_menu" style="display: none;"><span class="menu_label">...</span>
+        <ul class="ch">
+
+        </ul>
+    </li>
+</ul>  
+</div>
+<div class="heading">
+    <span id="title"></span>
+    <span id="ample"></span>
+</div>

@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="/Assets/css/style.css">
+<section class="menubar">
+	<span class="icon">
+        <img src="Assets/img/icon_white.svg" alt="AMPLE">
+    </span>
+    
+</section>
+<section class="main" id="main">
+    <div class="sidebar">
+        <div class="btnbar">
+            <div class="top">
+                <button data-expand="explorer">
+                    <img src="Assets/img/folder.svg" alt="">
+                </button>
+                <button id="find_btn">
+                    <img src="Assets/img/find.svg" alt="find">
+                </button>
+                <button id="run_btn" click="save()" title="Save">
+                    <img src="Assets/img/save.svg" alt="Save">
+                </button>
+                <button click="run()" title="Run">
+                    <img src="Assets/img/redo.svg" alt="run">
+                </button>
+            </div>
+            <div class="bottom">
+                <button id="settings_btn"><img src="Assets/img/settings.svg" alt="settings"></button>
+                <ul id="settings_menu">
+                    <li>Editor Layout</li>
+                    <li>Change Theme</li>
+                    <li>Keyboard Shortcuts</li>
+                    <hr>
+                    <li>Editor Settings</li>
+                    <li>Keyboard Shortcuts</li>
+                </ul>
+            </div>
+        </div>
+        <div class="expandable open">
+            <div class="view" id="explorer">
+                <p class="title">Explorer</p>
+                <div id="tree" class="tree">
+                    <div class="item file" style="pointer-events: none;"><span>Loading...</span></div>
+                </div>
+            </div>
+            <div class="view" style="display: none;">
+                <p class="title">Search</p>
+                <div class="input">
+                    <input type="search" id="findBox" placeholder="Find" oninput="find()" autocomplete="off">
+                    <label class="btn" title="Match Case">
+                        <input type="checkbox" id="find_case" oninput="find()">
+                        <span>Aa</span>
+                    </label>
+                </div>
+                <label><input type="search" id="replBox" placeholder="Replace"></label>
+                <div class="results">
+                    <div class="count">Type to Search</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="workarea">
+        <div class="code_area">
+            <div class="loader">
+                <img src="./Assets/img/icon_white.svg" alt="" style="animation: fade 2s ease-in-out infinite;">
+                <style>@keyframes fade{50%{opacity:0.1;transform: scale(.95);}}</style>
+                <p>Loading Editor...</p>
+            </div>
+            <div class="tabs" >
+                <button class="tab">
+                    <span class="filename">untitled</span>
+                    <!-- <span class="close_btn">&times;</span> -->
+                </button>
+            </div>
+            <div class="code html">
+                <textarea id="code"></textarea>
+            </div>
+            <div class="footer" >
+                <div id="curPos">Ln 0, Col 0</div>
+            </div>
+            
+        </div>
+        <div class="result_area">
+            <div class="result_frame">
+                <iframe id="result" src="/viewer/"></iframe>
+            </div>
+            <div class="devtools">
+                <span id="indicator"></span>
+                <nav>
+                    <div class="left">
+                        <button>Console</button>
+                        <button class="active">Elements</button>
+                        <button>Storage</button>
+                    </div>
+                    <div class="right">
+                        <button class="open" click="$('.devtools').classList.toggle('open');"><span></span></button>
+                    </div>
+                </nav>
+                <div class="main">
+                    <div class="view" id="console" style="display: none;"></div>
+                    <div class="view" id="elements"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copybox">
+        <h3>Imported Code<p>Click to Copy Code</p></h3>
+        
+        <div class="btns">
+            <button click="copy_code('HTML')" id="copy_html_btn">HTML</button>
+            <button click="copy_code('CSS')" id="copy_css_btn">CSS</button>
+            <button click="copy_code('JS')" id="copy_js_btn">JS</button>
+        </div>
+        <button class="close" click="closeCopy()">&times;</button>
+    </div>
+</section>

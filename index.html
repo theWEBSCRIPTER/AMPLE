@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html style="background: #272822; height: 100vh;">
+
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="">
+	<title>Loading | AMPLE</title>
+	<link rel="icon" href="./Assets/img/icon_color.png">
+	<link rel="stylesheet" type="text/css" href="Assets/css/default.css">
+	<meta name="title" content="AMPLE CODE EDITOR">
+	<meta name="description" content="AMPLE is a powerful web based code playground for frontend	.">
+</head>
+
+
+
+<body>
+
+
+	<div id="loader">
+		<div class="top"></div>
+		<div class="center">
+			<div class="side"></div>
+			<div class="ample">
+				<svg width="230px" height="230px" viewBox="0 0 2.43476 2.43476">
+					<path style="fill:rgb(8, 138, 189)"
+						d="M0 0l0.389572 0 0 0.389572 0 1.65562 1.26608 0 0 0.389572 -1.65565 0 0 -2.43476zm2.04519 2.04519l0 -1.65562 -1.26608 0 0 -0.389572 1.65565 0 0 2.43476 -0.389572 0 0 -0.389572zm-1.26616 -1.26619l0.876728 0 0 0.87676 -0.876728 0 0 -0.87676z" />
+				</svg>
+			</div>
+			<h1>AMPLE CODE EDITOR</h1>
+			<noscript>Please Enable JavaScript In Your Browser Settings.</noscript>
+			<p id="loading">...</p>
+		</div>
+		<div class="bottom"></div>
+		<style>
+			#loader{
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #272822;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				z-index: 100000;
+			}
+			#loader .top{
+				pointer-events: none;
+				width: 100%;
+				height: 30px;
+				background: #1c1d1b;
+			}
+			#loader .center{
+				pointer-events: none;
+				width: 100%;
+				height: calc(100% - 50px);
+				background: #272822;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				color: #fff;
+			}
+			#loader .center .side{
+				pointer-events: none;
+				width: 40px;
+				height: calc(100% + 20px);
+				background: #2d2d2d;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 1;
+			}
+			#loader .bottom{
+				pointer-events: none;
+				width: 100%;
+				height: 20px;
+				background: #3c3c3c;
+			}
+		</style>
+		<script>
+			const d = document;
+			const [$,$$] = [s => d.querySelector(s),s=>d.querySelectorAll(s)]
+			$('#loading').innerHTML = 'Loading...'
+		</script>
+	</div>
+	
+	
+	
+	
+</body>
+<!-- Main JAVASCRIPT -->
+<script src="Assets/js/init.js"></script>
+<script>
+	
+</script>
+</html>

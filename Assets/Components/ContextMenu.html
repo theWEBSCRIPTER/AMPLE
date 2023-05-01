@@ -1,0 +1,29 @@
+<div class="context_menu" oncontextmenu="c()">
+    <li onclick="run();"><img src="Assets/img/redo.svg" alt=""> Run...</li>
+    <li onclick="format()"><img src="Assets/img/magic.svg" alt="">Format Document <span>Ctrl+Shift+F</span></li>
+    <li><img src="Assets/img/magic.svg" alt="">Analyze Document</li>
+    <hr>
+    <li onclick="d.execCommand('Cut',false,null)"><img src="Assets/img/cut.svg" alt="">Cut
+        <span>Ctrl+X</span>
+    </li>
+    <li onclick="d.execCommand('Copy',false,null)"><img src="Assets/img/redo.svg" alt="">Copy
+        <span>Ctrl+C</span>
+    </li>
+    <li onclick="paste()">
+        <img src="Assets/img/redo.svg" alt="">Paste
+        <span>Ctrl+V</span>
+    </li>
+    <hr>
+    <li onclick="cmd('selectAll');"><img src="Assets/img/redo.svg" alt="">Select All
+        <span>Ctrl+A</span>
+    </li>
+    <hr>
+    <li onclick="cmd('undo');"><img src="Assets/img/undo.svg" alt="">Undo
+        <span>Ctrl+Z</span>
+    </li>
+    <li onclick="cmd('redo');"><img src="Assets/img/redo.svg" alt="">Redo
+        <span>Ctrl+Y</span>
+    </li>
+    <hr>
+    <li onclick="exportAs()"><i class="fas fa-file-export"></i>Export to Device <span>Ctrl+E</span></li>
+</div>
