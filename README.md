@@ -22,8 +22,8 @@ As AMPLE is under development, contributions are not yet being accepted. However
 
 ## Issues
 
-If you encounter any issues while using AMPLE, please report them on the AMPLE GitHub repository. We appreciate your help in improving the project.
+If you encounter any issues while using AMPLE, please report me on the AMPLE GitHub repository. We appreciate your help in improving the project.
 
 ## Contact
 
-For any inquiries, please contact the AMPLE development team at [faizanahmadbht@gmail.com](mailto:faizanahmadbht@gmail.com).
+For any inquiries, please contact me at [faizanahmadbht@gmail.com](mailto:faizanahmadbht@gmail.com).
